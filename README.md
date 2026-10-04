@@ -8,7 +8,7 @@ Windows one click guide for power users
 # IWR
 Paste below code into an elevated Administrator PowerShell window
 ```
-iwr 'https://github.com/isleap9/AkariOS/raw/refs/heads/main/AkariOS/akarios.ps1' -useb | iex
+iwr 'https://github.com/isleap9/Akari-OS/raw/refs/heads/main/akarios.ps1' -useb | iex
 ```
 
 # Graphics

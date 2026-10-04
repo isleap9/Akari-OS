@@ -19,14 +19,25 @@
         $progresspreference = 'silentlycontinue'
 
         Write-Host "DL`n"
-		## explorer "https://github.com/isleap9/AkariOS/tree/main/AkariOS"
+		## explorer "https://github.com/isleap9/Akari-OS"
 
 # download akarios temp files
-IWR "https://github.com/isleap9/AkariOS/raw/refs/heads/main/AkariOS/reg.reg" -OutFile "$env:SystemRoot\Temp\reg.reg"
-IWR "https://github.com/isleap9/AkariOS/raw/refs/heads/main/AkariOS/settimerresolutionservice.cs" -OutFile "$env:SystemRoot\Temp\settimerresolutionservice.cs"
-IWR "https://github.com/isleap9/AkariOS/raw/refs/heads/main/AkariOS/start2.txt" -OutFile "$env:SystemRoot\Temp\start2.txt"
-IWR "https://github.com/isleap9/AkariOS/raw/refs/heads/main/AkariOS/stepone.ps1" -OutFile "$env:SystemRoot\Temp\stepone.ps1"
-IWR "https://github.com/isleap9/AkariOS/raw/refs/heads/main/AkariOS/steptwo.ps1" -OutFile "$env:SystemRoot\Temp\steptwo.ps1"
+# remove stale copies so a failed download cannot reuse an old file
+foreach ($f in "reg.reg","settimerresolutionservice.cs","start2.txt","stepone.ps1","steptwo.ps1") { Remove-Item "$env:SystemRoot\Temp\$f" -Force -ErrorAction SilentlyContinue }
+
+IWR "https://github.com/isleap9/Akari-OS/raw/refs/heads/main/reg.reg" -OutFile "$env:SystemRoot\Temp\reg.reg"
+IWR "https://github.com/isleap9/Akari-OS/raw/refs/heads/main/settimerresolutionservice.cs" -OutFile "$env:SystemRoot\Temp\settimerresolutionservice.cs"
+IWR "https://github.com/isleap9/Akari-OS/raw/refs/heads/main/start2.txt" -OutFile "$env:SystemRoot\Temp\start2.txt"
+IWR "https://github.com/isleap9/Akari-OS/raw/refs/heads/main/stepone.ps1" -OutFile "$env:SystemRoot\Temp\stepone.ps1"
+IWR "https://github.com/isleap9/Akari-OS/raw/refs/heads/main/steptwo.ps1" -OutFile "$env:SystemRoot\Temp\steptwo.ps1"
+
+# stop before changing anything if a required file failed to download
+$missing = "reg.reg","settimerresolutionservice.cs","start2.txt","stepone.ps1","steptwo.ps1" | Where-Object { -not (Test-Path "$env:SystemRoot\Temp\$_") -or (Get-Item "$env:SystemRoot\Temp\$_").Length -eq 0 }
+if ($missing) {
+Write-Host "Download failed: $($missing -join ', ')`nNothing was changed. Check your connection and try again.`n" -ForegroundColor Red
+Pause
+exit
+}
 
         Write-Host "7Z`n"
         ## explorer "https://www.7-zip.org" 
