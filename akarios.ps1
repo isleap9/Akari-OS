@@ -39,6 +39,9 @@ Pause
 exit
 }
 
+# download wallpaper, skipped if it fails
+IWR "https://github.com/isleap9/Akari-OS/raw/refs/heads/main/wallpaper.png" -OutFile "$env:SystemRoot\AkariOS.png" -ErrorAction SilentlyContinue
+
         Write-Host "7Z`n"
         ## explorer "https://www.7-zip.org" 
 
