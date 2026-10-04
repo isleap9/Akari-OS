@@ -43,7 +43,7 @@ exit
         ## explorer "https://www.7-zip.org" 
 
 # download 7zip
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/7zip.exe" -OutFile "$env:SystemRoot\Temp\7zip.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/7zip.exe" -OutFile "$env:SystemRoot\Temp\7zip.exe"
 
 # install 7zip
 Start-Process -Wait "$env:SystemRoot\Temp\7zip.exe" -ArgumentList "/S"
@@ -60,18 +60,18 @@ Remove-Item "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\7-Zip" -Recu
 		## explorer "https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170"
 
 # download c++
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2005_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2005_x86.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2005_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2005_x64.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2008_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2008_x86.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2008_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2008_x64.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2010_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2010_x86.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2010_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2010_x64.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2012_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2012_x86.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2012_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2012_x64.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2013_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2013_x86.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2013_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2013_x64.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2015_2017_2019_2022_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2015_2017_2019_2022_x86.exe"
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/vcredist2015_2017_2019_2022_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2015_2017_2019_2022_x64.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2005_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2005_x86.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2005_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2005_x64.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2008_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2008_x86.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2008_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2008_x64.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2010_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2010_x86.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2010_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2010_x64.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2012_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2012_x86.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2012_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2012_x64.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2013_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2013_x86.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2013_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2013_x64.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2015_2017_2019_2022_x86.exe" -OutFile "$env:SystemRoot\Temp\vcredist2015_2017_2019_2022_x86.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/vcredist2015_2017_2019_2022_x64.exe" -OutFile "$env:SystemRoot\Temp\vcredist2015_2017_2019_2022_x64.exe"
 
 # install c++
 Start-Process -Wait "$env:SystemRoot\Temp\vcredist2005_x86.exe" -ArgumentList "/Q /C:`"msiexec /i vcredist.msi /qn /norestart`"" -WindowStyle Hidden
@@ -91,7 +91,7 @@ Start-Process -Wait "$env:SystemRoot\Temp\vcredist2015_2017_2019_2022_x64.exe" -
         ## explorer "https://www.wagnardsoft.com/display-driver-uninstaller-ddu"
 
 # download ddu
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/ddu.exe" -OutFile "$env:SystemRoot\Temp\ddu.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/ddu.exe" -OutFile "$env:SystemRoot\Temp\ddu.exe"
 
 # extract ddu with 7zip
 & "$env:SystemDrive\Program Files\7-Zip\7z.exe" x "$env:SystemRoot\Temp\ddu.exe" -o"$env:SystemRoot\Temp\ddu" -y | Out-Null
@@ -147,7 +147,7 @@ cmd /c "reg add `"HKLM\Software\Microsoft\Windows\CurrentVersion\DriverSearching
         ## explorer "https://helium.computer"
 
 # download helium
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/helium.exe" -OutFile "$env:SystemRoot\Temp\helium.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/helium.exe" -OutFile "$env:SystemRoot\Temp\helium.exe"
 
 # install helium
 Start-Process -Wait "$env:SystemRoot\Temp\helium.exe" -ArgumentList "/S" -WindowStyle Hidden
@@ -183,7 +183,7 @@ Move-Item -Path "$env:AppData\Microsoft\Windows\Start Menu\Programs\Helium.lnk" 
         ## explorer "https://www.microsoft.com/en-au/download/details.aspx?id=35"
 
 # download directx
-IWR "https://github.com/FR33THYFR33THY/WinSux/releases/download/Files/directx.exe" -OutFile "$env:SystemRoot\Temp\directx.exe"
+IWR "https://github.com/isleap9/AkariOS-Files/releases/download/Files/directx.exe" -OutFile "$env:SystemRoot\Temp\directx.exe"
 
 # extract directx with 7zip
 & "$env:SystemDrive\Program Files\7-Zip\7z.exe" x "$env:SystemRoot\Temp\directx.exe" -o"$env:SystemRoot\Temp\directx" -y | Out-Null

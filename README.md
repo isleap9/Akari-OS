@@ -12,18 +12,18 @@ iwr 'https://github.com/isleap9/Akari-OS/raw/refs/heads/main/akarios.ps1' -useb 
 ```
 
 # Graphics
-Graphics installer options from [Ultimate](<https://github.com/FR33THYFR33THY/Ultimate>)
+Graphics installer options from [AkariOS Ultimate](<https://github.com/isleap9/AkariOS-Ultimate>)
 - Install updated graphics driver
 ```
-iwr 'https://github.com/FR33THYFR33THY/Ultimate/raw/refs/heads/main/5%20Graphics/2%20Driver%20Updated%20Install.ps1' -useb | iex
+iwr 'https://github.com/isleap9/AkariOS-Ultimate/raw/refs/heads/main/5%20Graphics/2%20Driver%20Updated%20Install.ps1' -useb | iex
 ```
 - Install updated graphics driver & import settings
 ```
-iwr 'https://github.com/FR33THYFR33THY/Ultimate/raw/refs/heads/main/5%20Graphics/3%20Driver%20Updated%20Install%20&%20Settings.ps1' -useb | iex
+iwr 'https://github.com/isleap9/AkariOS-Ultimate/raw/refs/heads/main/5%20Graphics/3%20Driver%20Updated%20Install%20&%20Settings.ps1' -useb | iex
 ```
 - Install debloated graphics driver & import settings
 ```
-iwr 'https://github.com/FR33THYFR33THY/Ultimate/raw/refs/heads/main/5%20Graphics/4%20Driver%20Debloat%20Install%20&%20Settings.ps1' -useb | iex
+iwr 'https://github.com/isleap9/AkariOS-Ultimate/raw/refs/heads/main/5%20Graphics/4%20Driver%20Debloat%20Install%20&%20Settings.ps1' -useb | iex
 ```
 
 # Credits
