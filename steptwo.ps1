@@ -775,15 +775,21 @@ $edit.Dispose()
 cmd /c "reg add `"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP`" /v `"LockScreenImagePath`" /t REG_SZ /d `"C:\Windows\Black.jpg`" /f >nul 2>&1"
 cmd /c "reg add `"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP`" /v `"LockScreenImageStatus`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
-# akarios wallpaper, falls back to the black wallpaper if the download failed
-if (Test-Path "$env:SystemRoot\AkariOS.png") {
+# akarios wallpaper, falls back to the black wallpaper if it is missing
+$wallpaper = "$env:SystemRoot\Web\AkariOS\img.png"
+if (!(Test-Path $wallpaper)) {
+$ProgressPreference = 'SilentlyContinue'
+New-Item -Path "$env:SystemRoot\Web\AkariOS" -ItemType Directory -Force | Out-Null
+IWR "https://github.com/isleap9/Akari-OS/raw/refs/heads/main/wallpaper.png" -OutFile $wallpaper -ErrorAction SilentlyContinue
+}
+if (Test-Path $wallpaper) {
 cmd /c "reg add `"HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers`" /v `"BackgroundType`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
 cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"WallpaperStyle`" /t REG_SZ /d `"10`" /f >nul 2>&1"
 cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"TileWallpaper`" /t REG_SZ /d `"0`" /f >nul 2>&1"
 cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"JPEGImportQuality`" /t REG_DWORD /d `"100`" /f >nul 2>&1"
-cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Wallpaper`" /t REG_SZ /d `"C:\Windows\AkariOS.png`" /f >nul 2>&1"
+cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Wallpaper`" /t REG_SZ /d `"$wallpaper`" /f >nul 2>&1"
 Add-Type -TypeDefinition 'using System.Runtime.InteropServices; public class AkariWallpaper { [DllImport("user32.dll", CharSet = CharSet.Unicode)] public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni); }'
-[AkariWallpaper]::SystemParametersInfo(20, 0, "C:\Windows\AkariOS.png", 3) | Out-Null
+[AkariWallpaper]::SystemParametersInfo(20, 0, $wallpaper, 3) | Out-Null
 } else {
 cmd /c "reg add `"HKCU\Control Panel\Desktop`" /v `"Wallpaper`" /t REG_SZ /d `"C:\Windows\Black.jpg`" /f >nul 2>&1"
 }
