@@ -776,11 +776,13 @@ cmd /c "reg add `"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Personalization
 cmd /c "reg add `"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP`" /v `"LockScreenImageStatus`" /t REG_DWORD /d `"1`" /f >nul 2>&1"
 
 # akarios wallpaper, falls back to the black wallpaper if it is missing
-$wallpaper = "$env:SystemRoot\Web\AkariOS\img.png"
+$wallpaper = "$env:SystemRoot\Web\AkariOS\img.jpg"
 if (!(Test-Path $wallpaper)) {
+try {
 $ProgressPreference = 'SilentlyContinue'
 New-Item -Path "$env:SystemRoot\Web\AkariOS" -ItemType Directory -Force | Out-Null
-IWR "https://github.com/isleap9/Akari-OS/raw/refs/heads/main/wallpaper.png" -OutFile $wallpaper -ErrorAction SilentlyContinue
+IWR "https://github.com/isleap9/Akari-OS/raw/refs/heads/main/img.jpg" -OutFile $wallpaper -ErrorAction Stop
+} catch { }
 }
 if (Test-Path $wallpaper) {
 cmd /c "reg add `"HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers`" /v `"BackgroundType`" /t REG_DWORD /d `"0`" /f >nul 2>&1"
