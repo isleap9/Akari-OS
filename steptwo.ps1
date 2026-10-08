@@ -889,6 +889,24 @@ certutil.exe -decode "$env:SystemRoot\Temp\start2.txt" "$env:SystemRoot\Temp\sta
 # install start2 bin
 Copy-Item "$env:SystemRoot\Temp\start2.bin" -Destination "$env:USERPROFILE\AppData\Local\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\LocalState" -Force -ErrorAction SilentlyContinue | Out-Null
 
+# keep only file explorer and settings pinned in start (wipe the rest)
+Stop-Process -Force -Name StartMenuExperienceHost -ErrorAction SilentlyContinue | Out-Null
+Start-Sleep -Seconds 1
+Remove-Item -Recurse -Force "$env:USERPROFILE\AppData\Local\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\LocalState\start2.bin" -ErrorAction SilentlyContinue | Out-Null
+$StartPins = @'
+{
+  "pinnedList": [
+    { "desktopAppLink": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\File Explorer.lnk" },
+    { "packagedAppId": "windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel" }
+  ]
+}
+'@
+$shellFolders = @("$env:LOCALAPPDATA\Microsoft\Windows\Shell", "$env:SystemDrive\Users\Default\AppData\Local\Microsoft\Windows\Shell")
+foreach ($shellFolder in $shellFolders) {
+New-Item -Path $shellFolder -ItemType Directory -Force -ErrorAction SilentlyContinue | Out-Null
+[System.IO.File]::WriteAllText("$shellFolder\LayoutModification.json", $StartPins, (New-Object System.Text.UTF8Encoding($false)))
+}
+
 # set start menu apps view to list
 cmd /c "reg add `"HKCU\Software\Microsoft\Windows\CurrentVersion\Start`" /v `"AllAppsViewMode`" /t REG_DWORD /d `"2`" /f >nul 2>&1"
 
